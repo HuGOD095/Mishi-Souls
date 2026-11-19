@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b7fxgkb5ijlie"]
+
+[ext_resource type="Texture2D" uid="uid://ttw4kyncgc7g" path="res://modelos/Escenario_Objetos_Montaña.png" id="1_gqsmu"]
+
+[resource]
+resource_name = "Montaña"
+cull_mode = 2
+albedo_texture = ExtResource("1_gqsmu")

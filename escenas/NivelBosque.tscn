@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://73oc8ok4ppfi"]
+
+[ext_resource type="PackedScene" uid="uid://d107pe67j1tv1" path="res://modelos/Escenario_Objetos.blend" id="1_ijf12"]
+[ext_resource type="PackedScene" uid="uid://b1wpmdu7gowym" path="res://modelos/personaje_prueba.tscn" id="2_pfcc8"]
+
+[sub_resource type="Environment" id="Environment_ijf12"]
+background_mode = 1
+background_color = Color(0.043137256, 0.06666667, 0.10980392, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.09411765, 0.14117648, 0.23137255, 1)
+ambient_light_energy = 0.3
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.19033033, 0.13479343, 0.23408529, 1)
+fog_density = 1.0
+fog_sky_affect = 0.534
+fog_depth_begin = 12.0
+fog_depth_end = 50.0
+
+[node name="Mundo" type="Node3D" unique_id=2044363807]
+
+[node name="Escenario_Objetos" parent="." unique_id=302895652 instance=ExtResource("1_ijf12")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=315188064]
+transform = Transform3D(0.81915206, -0.4055798, 0.4055798, 0, 0.70710677, 0.70710677, -0.57357645, -0.579228, 0.579228, 0, 0, 0)
+light_color = Color(0.46666667, 0.33333334, 0.6, 1)
+light_energy = 0.45
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1385027950]
+environment = SubResource("Environment_ijf12")
+
+[node name="PersonajePrueba" parent="." unique_id=1807025397 instance=ExtResource("2_pfcc8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.613668, -163.10419)
+
+[editable path="Escenario_Objetos"]

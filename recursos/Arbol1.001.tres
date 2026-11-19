@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://csjbralsr28to"]
+
+[ext_resource type="Texture2D" uid="uid://sorqbi5ar40i" path="res://modelos/Escenario_Objetos_tree17.png" id="1_aqt3f"]
+
+[resource]
+resource_name = "Arbol1.001"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1_aqt3f")
+metallic_specular = 0.0
+texture_filter = 0

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b0ur2acku0npy"]
+
+[ext_resource type="Texture2D" uid="uid://cagqpuvuehvp4" path="res://modelos/Escenario_Objetos_Piso_Casa.png" id="1_fh0wt"]
+
+[resource]
+resource_name = "PisoCasa"
+cull_mode = 2
+albedo_texture = ExtResource("1_fh0wt")

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cdivpi26uw3dv"]
+
+[ext_resource type="Texture2D" uid="uid://rlgbiaansp13" path="res://modelos/Escenario_Objetos_Pared_Piedra.png" id="1_e7wcu"]
+
+[resource]
+resource_name = "ParedPiedra"
+cull_mode = 2
+albedo_texture = ExtResource("1_e7wcu")

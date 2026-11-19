@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dd1imfk10rg6o"]
+
+[ext_resource type="Texture2D" uid="uid://ctxcxornqylib" path="res://modelos/Escenario_Objetos_tree26.png" id="1_wm2h2"]
+
+[resource]
+resource_name = "tronco1"
+cull_mode = 2
+albedo_texture = ExtResource("1_wm2h2")
+texture_filter = 2
