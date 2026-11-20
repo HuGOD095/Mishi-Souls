@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://cbwfjks3riukw"]
+
+[ext_resource type="PackedScene" uid="uid://bxhnqm6wev82k" path="res://modelos/player/Mishi_Animaciones.glb" id="1_3si8m"]
+[ext_resource type="Script" uid="uid://bu6rpcep78u0k" path="res://modelos/player/mishi_controlable.gd" id="2_qn6lt"]
+[ext_resource type="PackedScene" uid="uid://dkgstwmucyl8q" path="res://modelos/arms/Sword1/Sword1.glb" id="2_xjlu3"]
+
+[node name="Mishi_Animaciones" unique_id=1938246475 instance=ExtResource("1_3si8m")]
+script = ExtResource("2_qn6lt")
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1895290406) index="0" unique_id=1934127241]
+bones/0/position = Vector3(-162.63148, 63.50525, -24.322605)
+bones/0/rotation = Quaternion(-0.29859126, 0.5754995, -0.67901057, 0.34436655)
+bones/1/position = Vector3(2.0201478e-06, 11.017376, 0.04381547)
+bones/1/rotation = Quaternion(0.06583593, 0.03068085, -0.027565544, 0.9969777)
+bones/2/position = Vector3(5.5952605e-06, 12.853711, -2.7672131e-06)
+bones/2/rotation = Quaternion(0.010800561, 0.012261261, 0.020368531, 0.999659)
+bones/3/position = Vector3(-2.0149619e-06, 14.689958, 3.907786e-06)
+bones/3/rotation = Quaternion(0.0019296732, 0.011353449, 0.009135005, 0.999892)
+bones/4/position = Vector3(-1.6765025e-06, 16.526203, -9.633156e-06)
+bones/4/rotation = Quaternion(-0.01924232, 0.08534759, -0.0151511915, 0.9960502)
+bones/5/position = Vector3(1.96963e-05, 25.849728, 2.9214203)
+bones/5/rotation = Quaternion(-0.040575232, 0.20344, -0.049198054, 0.9770084)
+bones/6/position = Vector3(-1.5756803e-05, 31.344276, 3.5423806)
+bones/7/position = Vector3(8.738775, 13.914458, -0.6481384)
+bones/7/rotation = Quaternion(-0.6010003, -0.37126642, 0.55921984, -0.43385842)
+bones/8/position = Vector3(8.542679e-08, 18.318161, 4.1888125e-06)
+bones/8/rotation = Quaternion(0.28749263, 0.060499836, 0.22054604, 0.93007916)
+bones/9/position = Vector3(1.3415609e-05, 15.798464, 1.7016628e-06)
+bones/9/rotation = Quaternion(0.19983986, -0.21848823, 0.6375869, 0.7112032)
+bones/10/position = Vector3(4.771373e-07, 21.747116, -3.15528e-06)
+bones/10/rotation = Quaternion(0.06319724, -0.0025668454, -0.04291651, 0.99707454)
+bones/11/position = Vector3(1.312078e-06, 0.84645563, -5.6124395e-06)
+bones/11/rotation = Quaternion(0.57610875, 0.044602845, 0.060342938, 0.81392133)
+bones/12/position = Vector3(-1.9073209e-06, 2.0973222, -1.9073395e-06)
+bones/12/rotation = Quaternion(0.5559158, 0.017325014, 0.0015109678, 0.8310567)
+bones/13/position = Vector3(0.015246868, 2.0960872, 0.39331353)
+bones/13/rotation = Quaternion(0.5684124, -0.0030204023, -0.05101834, 0.8211549)
+bones/14/position = Vector3(-0.01586175, 0.14997005, -0.24090791)
+bones/15/position = Vector3(-8.738771, 13.9148445, -0.55228364)
+bones/15/rotation = Quaternion(0.43084162, -0.4389287, 0.70904964, 0.34491408)
+bones/16/position = Vector3(-2.0336822e-06, 18.305346, 4.204099e-06)
+bones/16/rotation = Quaternion(0.32993686, -0.06267974, -0.0727624, 0.9391052)
+bones/17/position = Vector3(3.0370375e-06, 15.737603, 1.739958e-05)
+bones/17/rotation = Quaternion(0.054591734, 0.027786467, -0.55597466, 0.828939)
+bones/18/position = Vector3(6.495838e-06, 21.747173, -1.520858e-06)
+bones/18/rotation = Quaternion(0.12331302, 0.0018326673, -0.28814778, 0.94961125)
+bones/19/position = Vector3(-8.304736e-06, 1.6522167, -4.4562407e-06)
+bones/19/rotation = Quaternion(0.41087914, 0.045729693, 0.09437802, 0.90563786)
+bones/20/position = Vector3(4.053164e-06, 1.7060472, 6.2584836e-06)
+bones/20/rotation = Quaternion(0.39839372, -0.35402423, -0.13592406, 0.83514905)
+bones/21/position = Vector3(1.3890537, 1.2800151, 1.0749829)
+bones/21/rotation = Quaternion(0.2826766, 0.38611263, 0.13070779, 0.8682894)
+bones/22/position = Vector3(-0.619408, 0.46848965, -0.1206857)
+bones/23/position = Vector3(15.295139, -6.1173954, 0.6561901)
+bones/23/rotation = Quaternion(0.37898335, 0.44866836, 0.6974574, -0.41063553)
+bones/24/position = Vector3(-7.970647e-06, 18.58759, 4.509673e-06)
+bones/24/rotation = Quaternion(-0.20168346, 0.6594998, -0.52497816, 0.4987802)
+bones/25/position = Vector3(-1.2423155e-05, 8.725513, 1.3258496e-06)
+bones/25/rotation = Quaternion(0.034311347, -0.019582057, 0.0119081, 0.99914837)
+bones/26/position = Vector3(-1.1198469e-07, 2.876993, -1.2064904e-05)
+bones/26/rotation = Quaternion(0.52979004, -0.46866924, 0.47754362, 0.52117544)
+bones/27/position = Vector3(1.8994675e-05, 0.0643683, 6.119212e-07)
+bones/28/position = Vector3(-15.295143, -6.117392, 0.5599595)
+bones/28/rotation = Quaternion(-0.27511498, 0.0075081377, 0.832386, 0.48102897)
+bones/29/position = Vector3(7.5017797e-06, 18.586166, -2.423119e-05)
+bones/29/rotation = Quaternion(-0.35783273, -0.14840992, 0.21558319, 0.896356)
+bones/30/position = Vector3(1.0176336e-06, 8.718846, 1.0776617e-05)
+bones/30/rotation = Quaternion(0.347576, 0.05519171, 0.26286393, 0.8983582)
+bones/31/position = Vector3(3.0217816e-06, 2.8921595, -9.618234e-06)
+bones/31/rotation = Quaternion(0.52614635, 0.48406062, -0.46789798, 0.5195449)
+bones/32/position = Vector3(3.0198504e-05, 0.0060497564, -4.1725366e-06)
+
+[node name="AnclaEspada" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1" unique_id=1266704464]
+transform = Transform3D(-0.661914, 0.2490226, 0.7070058, -0.74926823, -0.1926182, -0.63363653, -0.021607576, -0.94915, 0.31408152, -155.31929, 56.524757, -61.44261)
+bone_name = "mixamorig_Spine2"
+bone_idx = 3
+
+[node name="EspadaEspalda" parent="Armature/Skeleton3D/AnclaEspada" index="0" unique_id=1066886701 instance=ExtResource("2_xjlu3")]
+unique_name_in_owner = true
+transform = Transform3D(-80.013084, 58.116684, 14.844344, -59.155, -80.551285, -3.4895854, 9.929278, -11.573292, 98.83052, -29.249458, 35.22387, -10.739563)
+visible = false
+
+[node name="AnclaMano" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="2" unique_id=1038268873]
+transform = Transform3D(-0.17372426, 0.66844094, -0.72319156, -0.3128563, -0.73377573, -0.60307, -0.93377733, 0.12148722, 0.33660114, -122.57456, 80.479065, -45.166763)
+bone_name = "mixamorig_RightHand"
+bone_idx = 18
+
+[node name="EspadaMano" parent="Armature/Skeleton3D/AnclaMano" index="0" unique_id=112374599 instance=ExtResource("2_xjlu3")]
+unique_name_in_owner = true
+transform = Transform3D(50.60926, 73.33343, 45.39736, -73.19006, 64.36244, -22.376253, -45.62813, -21.901865, 86.24607, -0.3980484, 2.5443268, -0.047302246)

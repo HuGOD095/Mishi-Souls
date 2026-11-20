@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dqx1u22f406p0"]
+
+[ext_resource type="PackedScene" uid="uid://dkgstwmucyl8q" path="res://modelos/arms/Sword1/Sword1.glb" id="1_8x75p"]
+[ext_resource type="Script" uid="uid://c01ix12mbpc73" path="res://escenas/espada_recoger.gd" id="1_pvb0a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvb0a"]
+size = Vector3(0.35, 1, 0.35)
+
+[node name="EspadaRecoger" type="Area3D" unique_id=1841875243]
+collision_mask = 2
+script = ExtResource("1_pvb0a")
+
+[node name="Sword1" parent="." unique_id=1066886701 instance=ExtResource("1_8x75p")]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, -0.37363648, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=467190816]
+shape = SubResource("BoxShape3D_pvb0a")

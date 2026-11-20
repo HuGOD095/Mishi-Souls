@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://73oc8ok4ppfi"]
 
 [ext_resource type="PackedScene" uid="uid://d107pe67j1tv1" path="res://modelos/Escenario_Objetos.blend" id="1_ijf12"]
+[ext_resource type="PackedScene" uid="uid://dqx1u22f406p0" path="res://escenas/espada_recoger.tscn" id="2_gkckt"]
 [ext_resource type="PackedScene" uid="uid://b1wpmdu7gowym" path="res://modelos/personaje_prueba.tscn" id="2_pfcc8"]
 
 [sub_resource type="Environment" id="Environment_ijf12"]
@@ -20,6 +21,9 @@ fog_depth_end = 50.0
 [node name="Mundo" type="Node3D" unique_id=2044363807]
 
 [node name="Escenario_Objetos" parent="." unique_id=302895652 instance=ExtResource("1_ijf12")]
+
+[node name="EspadaRecoger" parent="." unique_id=1841875243 instance=ExtResource("2_gkckt")]
+transform = Transform3D(0.2824252, -0.3204714, 0.90417576, 0.40670702, 0.89364576, 0.18970153, -0.8688068, 0.31415814, 0.38272616, 0, 23.803669, -183.81953)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=315188064]
 transform = Transform3D(0.81915206, -0.4055798, 0.4055798, 0, 0.70710677, 0.70710677, -0.57357645, -0.579228, 0.579228, 0, 0, 0)
