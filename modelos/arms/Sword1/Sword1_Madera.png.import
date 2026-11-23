@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfoc62ayncjo7"
 path.s3tc="res://.godot/imported/Sword1_Madera.png-954c19f686a0bc8c37c7a642f9ea35da.s3tc.ctex"
+path.etc2="res://.godot/imported/Sword1_Madera.png-954c19f686a0bc8c37c7a642f9ea35da.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://modelos/arms/Sword1/Sword1_Madera.png"
-dest_files=["res://.godot/imported/Sword1_Madera.png-954c19f686a0bc8c37c7a642f9ea35da.s3tc.ctex"]
+dest_files=["res://.godot/imported/Sword1_Madera.png-954c19f686a0bc8c37c7a642f9ea35da.s3tc.ctex", "res://.godot/imported/Sword1_Madera.png-954c19f686a0bc8c37c7a642f9ea35da.etc2.ctex"]
 
 [params]
 

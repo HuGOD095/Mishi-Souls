@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dymqtv57ft3pk"
 path.s3tc="res://.godot/imported/Escenario_Objetos_Pelaje.png-6e29f30f845bda0ff65ab516330c0900.s3tc.ctex"
+path.etc2="res://.godot/imported/Escenario_Objetos_Pelaje.png-6e29f30f845bda0ff65ab516330c0900.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://modelos/Escenario_Objetos_Pelaje.png"
-dest_files=["res://.godot/imported/Escenario_Objetos_Pelaje.png-6e29f30f845bda0ff65ab516330c0900.s3tc.ctex"]
+dest_files=["res://.godot/imported/Escenario_Objetos_Pelaje.png-6e29f30f845bda0ff65ab516330c0900.s3tc.ctex", "res://.godot/imported/Escenario_Objetos_Pelaje.png-6e29f30f845bda0ff65ab516330c0900.etc2.ctex"]
 
 [params]
 

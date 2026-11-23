@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://gp5bls7nw76s"
 path.s3tc="res://.godot/imported/Escenario_Objetos_tree33.png-d909dd30b0146cb5f05d55cad38884b4.s3tc.ctex"
+path.etc2="res://.godot/imported/Escenario_Objetos_tree33.png-d909dd30b0146cb5f05d55cad38884b4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://modelos/Escenario_Objetos_tree33.png"
-dest_files=["res://.godot/imported/Escenario_Objetos_tree33.png-d909dd30b0146cb5f05d55cad38884b4.s3tc.ctex"]
+dest_files=["res://.godot/imported/Escenario_Objetos_tree33.png-d909dd30b0146cb5f05d55cad38884b4.s3tc.ctex", "res://.godot/imported/Escenario_Objetos_tree33.png-d909dd30b0146cb5f05d55cad38884b4.etc2.ctex"]
 
 [params]
 
