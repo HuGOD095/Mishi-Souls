@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dvyaaj8pb5ahf"
+path="res://.godot/imported/Angel - Sound Effect (HD).ogg-3c1084f0888242c699a67fd12f725052.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Music/Angel - Sound Effect (HD).ogg"
+dest_files=["res://.godot/imported/Angel - Sound Effect (HD).ogg-3c1084f0888242c699a67fd12f725052.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

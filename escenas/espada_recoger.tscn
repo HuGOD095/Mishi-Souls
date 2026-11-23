@@ -2,16 +2,80 @@
 
 [ext_resource type="PackedScene" uid="uid://dkgstwmucyl8q" path="res://modelos/arms/Sword1/Sword1.glb" id="1_8x75p"]
 [ext_resource type="Script" uid="uid://c01ix12mbpc73" path="res://escenas/espada_recoger.gd" id="1_pvb0a"]
+[ext_resource type="AudioStream" uid="uid://doqs65caeecpp" path="res://audio/SFX/Desenvainar.ogg" id="3_kralr"]
+[ext_resource type="AudioStream" uid="uid://bdysbqa6s7h2n" path="res://audio/Music/Musica_Epica.ogg" id="4_s0gut"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yok6o"]
+albedo_color = Color(0.48962224, 0.48962224, 0.48962218, 1)
+emission_enabled = true
+emission = Color(0.11069866, 0.31205487, 0.3248554, 1)
+emission_energy_multiplier = 3.19
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pvb0a"]
-size = Vector3(0.35, 1, 0.35)
+size = Vector3(0.35, 2, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvb0a"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.5568628, 1, 1, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_yok6o"]
+material = SubResource("StandardMaterial3D_pvb0a")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Gradient" id="Gradient_kralr"]
+offsets = PackedFloat32Array(0, 0.49302325, 1)
+colors = PackedColorArray(0.16862746, 0.6784314, 0.6039216, 0, 0.62959474, 0.9528194, 0.9433128, 1, 0.61106825, 0.8098514, 0.77989507, 0)
 
 [node name="EspadaRecoger" type="Area3D" unique_id=1841875243]
 collision_mask = 2
 script = ExtResource("1_pvb0a")
 
 [node name="Sword1" parent="." unique_id=1066886701 instance=ExtResource("1_8x75p")]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, -0.37363648, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -0.37363648, 0)
+
+[node name="Sword" parent="Sword1" index="0" unique_id=1111008907]
+material_override = SubResource("StandardMaterial3D_yok6o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=467190816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5159026, 0)
 shape = SubResource("BoxShape3D_pvb0a")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1434649124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0698171, -0.008784294)
+light_color = Color(0.3019608, 0.9411765, 1, 1)
+light_energy = 3.0
+omni_range = 25.708
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=512166870]
+amount = 50
+lifetime = 2.0
+mesh = SubResource("QuadMesh_yok6o")
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 0.35, 0)
+initial_velocity_min = 0.15
+initial_velocity_max = 0.45
+angle_min = 45.0
+angle_max = 45.0
+scale_amount_min = 0.6
+scale_amount_max = 1.2
+color_ramp = SubResource("Gradient_kralr")
+
+[node name="SonidoRecoger" type="AudioStreamPlayer" parent="." unique_id=1193242942]
+stream = ExtResource("3_kralr")
+
+[node name="AuraEspada" type="AudioStreamPlayer3D" parent="." unique_id=245643507]
+stream = ExtResource("4_s0gut")
+unit_size = 4.0
+autoplay = true
+max_distance = 18.0
+
+[editable path="Sword1"]

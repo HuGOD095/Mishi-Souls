@@ -1,8 +1,67 @@
 [gd_scene format=3 uid="uid://73oc8ok4ppfi"]
 
 [ext_resource type="PackedScene" uid="uid://d107pe67j1tv1" path="res://modelos/Escenario_Objetos.blend" id="1_ijf12"]
+[ext_resource type="Script" uid="uid://diw0m1gttnra7" path="res://escenas/nivel_bosque.gd" id="1_lkyk4"]
+[ext_resource type="FontFile" uid="uid://cn3s63drl15jm" path="res://fonts/SyneMono-Regular.ttf" id="2_cyqgy"]
 [ext_resource type="PackedScene" uid="uid://dqx1u22f406p0" path="res://escenas/espada_recoger.tscn" id="2_gkckt"]
 [ext_resource type="PackedScene" uid="uid://b1wpmdu7gowym" path="res://modelos/personaje_prueba.tscn" id="2_pfcc8"]
+[ext_resource type="Shader" uid="uid://bfj5jrd74dold" path="res://escenas/FiltroRetro.gdshader" id="5_6wtmw"]
+[ext_resource type="PackedScene" uid="uid://c764pgwopqv2o" path="res://escenas/objetos/estrella_recolectable.tscn" id="6_wtsyv"]
+[ext_resource type="AudioStream" uid="uid://coqq5np0emxf3" path="res://audio/Music/Dark_Fantasy_de_Fondo_Bosque.ogg" id="8_wo4pc"]
+[ext_resource type="AudioStream" uid="uid://bdxrkskbvmthc" path="res://audio/SFX/efecto sonido de bosque (noche).ogg" id="9_7qi5w"]
+[ext_resource type="AudioStream" uid="uid://dvyaaj8pb5ahf" path="res://audio/Music/Angel - Sound Effect (HD).ogg" id="10_sgwwy"]
+[ext_resource type="AudioStream" uid="uid://dkj4t7l8qe1fq" path="res://audio/SFX/Muerte_sound.ogg" id="11_b7dtp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cyqgy"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.17294784, 0.12941454, 0.05606521, 0.78431374)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4849186, 0.4224722, 0.24991813, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2830"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.6628962, 0.13494128, 0.14765435, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ml3sb"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.23114446, 0.4185079, 0.24550402, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
 
 [sub_resource type="Environment" id="Environment_ijf12"]
 background_mode = 1
@@ -18,12 +77,103 @@ fog_sky_affect = 0.534
 fog_depth_begin = 12.0
 fog_depth_end = 50.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtsyv"]
+shader = ExtResource("5_6wtmw")
+shader_parameter/color_depth = 32.0
+shader_parameter/dither_strength = 0.35
+
+[sub_resource type="Curve3D" id="Curve3D_cyqgy"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.6067352, -41.28838, 10.983261, 0, 0, 0, 0, 0, 0, -0.5897827, -0.4789505, -0.30110168),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x2830"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ml3sb"]
+
 [node name="Mundo" type="Node3D" unique_id=2044363807]
+script = ExtResource("1_lkyk4")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=179145521]
+
+[node name="ContadorEstrellas" type="Label" parent="UI" unique_id=1097727599]
+offset_right = 539.0
+offset_bottom = 85.0
+theme_override_fonts/font = ExtResource("2_cyqgy")
+theme_override_font_sizes/font_size = 70
+text = "0/0"
+
+[node name="VictoryPanel" type="Label" parent="UI" unique_id=1174026807]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_cyqgy")
+theme_override_font_sizes/font_size = 300
+text = "VICTORIA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vida" type="ProgressBar" parent="UI" unique_id=856459243]
+offset_left = 16.0
+offset_top = 99.0
+offset_right = 516.0
+offset_bottom = 121.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cyqgy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x2830")
+show_percentage = false
+
+[node name="Estamina" type="ProgressBar" parent="UI" unique_id=2022401351]
+offset_left = 19.0
+offset_top = 136.0
+offset_right = 516.0
+offset_bottom = 158.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cyqgy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ml3sb")
+show_percentage = false
+
+[node name="FondoMuerte" type="ColorRect" parent="UI" unique_id=1081399248]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.078431375, 0.078431375, 0.09411765, 0.74509805)
+
+[node name="Muerte" type="Label" parent="UI" unique_id=346021276]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6583407, 0.13001005, 0.16774796, 1)
+theme_override_fonts/font = ExtResource("2_cyqgy")
+theme_override_font_sizes/font_size = 300
+text = "HAZ MUERTO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FadeNegro" type="ColorRect" parent="UI" unique_id=392489967]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="Escenario_Objetos" parent="." unique_id=302895652 instance=ExtResource("1_ijf12")]
 
+[node name="CollisionShape3D" parent="Escenario_Objetos/Escenario/StaticBody3D" parent_id_path=PackedInt32Array(302895652, 653842974) index="0" unique_id=1202581076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5079956, 1.1444092e-05, -0.04446411)
+
 [node name="EspadaRecoger" parent="." unique_id=1841875243 instance=ExtResource("2_gkckt")]
-transform = Transform3D(0.2824252, -0.3204714, 0.90417576, 0.40670702, 0.89364576, 0.18970153, -0.8688068, 0.31415814, 0.38272616, 0, 23.803669, -183.81953)
+transform = Transform3D(0.38876033, 0.09029228, 0.9169039, 0.5845371, 0.7450774, -0.32121095, -0.7121669, 0.66083837, 0.23687729, 0, 22.637917, -183.81953)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=315188064]
 transform = Transform3D(0.81915206, -0.4055798, 0.4055798, 0, 0.70710677, 0.70710677, -0.57357645, -0.579228, 0.579228, 0, 0, 0)
@@ -35,6 +185,339 @@ shadow_enabled = true
 environment = SubResource("Environment_ijf12")
 
 [node name="PersonajePrueba" parent="." unique_id=1807025397 instance=ExtResource("2_pfcc8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.613668, -163.10419)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8064232, 22.472109, -158.888)
+
+[node name="Filtro" type="CanvasLayer" parent="." unique_id=1687472958]
+
+[node name="ColorRect" type="ColorRect" parent="Filtro" unique_id=1224559028]
+material = SubResource("ShaderMaterial_wtsyv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Estrellas" type="Node" parent="." unique_id=2055991806]
+
+[node name="Star" parent="Estrellas" unique_id=202060314 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.666703, 15.605881, -133.94386)
+
+[node name="Star2" parent="Estrellas" unique_id=1532742422 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.88911, 7.593651, -112.60683)
+
+[node name="Star3" parent="Estrellas" unique_id=1921000362 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.6845, 3.7491016, -66.15695)
+
+[node name="Star4" parent="Estrellas" unique_id=1337544861 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.845345, 10.565081, -93.75516)
+
+[node name="Star5" parent="Estrellas" unique_id=1630199164 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.928885, 27.443527, -213.16406)
+
+[node name="Star6" parent="Estrellas" unique_id=307449029 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.526726, 0.26819038, -23.369919)
+
+[node name="Star7" parent="Estrellas" unique_id=411718712 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.667923, -7.2976923, 0.011579037)
+
+[node name="Star8" parent="Estrellas" unique_id=81098820 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.68417, -20.549006, 79.37341)
+
+[node name="Star9" parent="Estrellas" unique_id=1165109337 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.072334, -52.45984, 49.372654)
+
+[node name="Star10" parent="Estrellas" unique_id=2106915774 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.16645, -16.627426, 166.32292)
+
+[node name="Star11" parent="Estrellas" unique_id=58823756 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.81447, -18.228613, 250.57542)
+
+[node name="Star12" parent="Estrellas" unique_id=1092993413 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.99901, 0.8763623, 240.25827)
+
+[node name="Star13" parent="Estrellas" unique_id=381927810 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.182014, -20.40702, 204.1886)
+
+[node name="Star14" parent="Estrellas" unique_id=273308764 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -121.3948, -57.83628, 165.47229)
+
+[node name="Star15" parent="Estrellas" unique_id=1301127357 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.482956, -19.496092, 34.54686)
+
+[node name="Star16" parent="Estrellas" unique_id=1192248423 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.222828, -6.897743, 0.2787385)
+
+[node name="Star17" parent="Estrellas" unique_id=1623944124 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -193.22807, -20.598871, 277.9517)
+
+[node name="Star18" parent="Estrellas" unique_id=1284174545 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.00726, 5.522735, -81.562294)
+
+[node name="Star19" parent="Estrellas" unique_id=877715962 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110.37069, -15.834758, 76.26346)
+
+[node name="Star20" parent="Estrellas" unique_id=1614407781 instance=ExtResource("6_wtsyv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.277111, -20.408344, 304.58286)
+
+[node name="PuntosSpawn" type="Node3D" parent="." unique_id=1323482144]
+
+[node name="Marker3D" type="Marker3D" parent="PuntosSpawn" unique_id=1515466330]
+transform = Transform3D(0.5995685, -0.7658781, 0.23226815, 0.8003235, 0.57376343, -0.17400548, 0, 0.29021785, 0.9569606, 40.892, 19.65095, -204.38849)
+
+[node name="Marker3D2" type="Marker3D" parent="PuntosSpawn" unique_id=1010823939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.383, -1.8549774, -55.776)
+
+[node name="Marker3D69" type="Marker3D" parent="PuntosSpawn" unique_id=134774227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.44548, 4.306734, -79.262634)
+
+[node name="Marker3D57" type="Marker3D" parent="PuntosSpawn" unique_id=1332747103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.303368, -1.8549774, -39.604385)
+
+[node name="Marker3D3" type="Marker3D" parent="PuntosSpawn" unique_id=598428582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1045017, -2.1018703, -62.2843)
+
+[node name="Marker3D67" type="Marker3D" parent="PuntosSpawn" unique_id=41778812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.462761, -1.7474763, -58.087917)
+
+[node name="Marker3D68" type="Marker3D" parent="PuntosSpawn" unique_id=77910630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0872803, -5.674514, -40.08176)
+
+[node name="Marker3D4" type="Marker3D" parent="PuntosSpawn" unique_id=1748748422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.62269, -0.44075108, -62.2843)
+
+[node name="Marker3D64" type="Marker3D" parent="PuntosSpawn" unique_id=1717372717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.369465, -3.7360878, -37.472023)
+
+[node name="Marker3D5" type="Marker3D" parent="PuntosSpawn" unique_id=1917082198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.670101, 3.3541126, -92.13676)
+
+[node name="Marker3D6" type="Marker3D" parent="PuntosSpawn" unique_id=653748739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.161648, 12.653351, -108.48727)
+
+[node name="Marker3D7" type="Marker3D" parent="PuntosSpawn" unique_id=354420196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.25826, 13.087727, -137.56729)
+
+[node name="Marker3D65" type="Marker3D" parent="PuntosSpawn" unique_id=284686674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.491714, 7.319618, -92.94417)
+
+[node name="Marker3D56" type="Marker3D" parent="PuntosSpawn" unique_id=438671184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.389065, 9.152661, -107.80526)
+
+[node name="Marker3D8" type="Marker3D" parent="PuntosSpawn" unique_id=1286865146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.905006, -6.3544593, -16.136265)
+
+[node name="Marker3D9" type="Marker3D" parent="PuntosSpawn" unique_id=922008514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.541548, -7.1481724, -16.136265)
+
+[node name="Marker3D10" type="Marker3D" parent="PuntosSpawn" unique_id=2115536367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.279879, -8.614908, -7.655038)
+
+[node name="Marker3D63" type="Marker3D" parent="PuntosSpawn" unique_id=189145366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.934578, 1.665762, -40.22934)
+
+[node name="Marker3D66" type="Marker3D" parent="PuntosSpawn" unique_id=780552224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.961708, -3.9807854, -34.002476)
+
+[node name="Marker3D11" type="Marker3D" parent="PuntosSpawn" unique_id=1676314711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.859165, -11.594233, 39.249058)
+
+[node name="Marker3D59" type="Marker3D" parent="PuntosSpawn" unique_id=370372911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.93726, -11.594233, 65.60603)
+
+[node name="Marker3D58" type="Marker3D" parent="PuntosSpawn" unique_id=1371934077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.44034, -8.207642, 35.37106)
+
+[node name="Marker3D12" type="Marker3D" parent="PuntosSpawn" unique_id=615923023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.02607, -11.547965, 26.807022)
+
+[node name="Marker3D61" type="Marker3D" parent="PuntosSpawn" unique_id=1902540864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.340694, -9.657282, 19.745811)
+
+[node name="Marker3D62" type="Marker3D" parent="PuntosSpawn" unique_id=2072213424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.950485, -18.704464, 123.07807)
+
+[node name="Marker3D13" type="Marker3D" parent="PuntosSpawn" unique_id=170497314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.78521, -17.026546, 142.00566)
+
+[node name="Marker3D14" type="Marker3D" parent="PuntosSpawn" unique_id=1639664192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.75412, -17.083385, 178.23671)
+
+[node name="Marker3D15" type="Marker3D" parent="PuntosSpawn" unique_id=2072696903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.52731, -20.418873, 236.74057)
+
+[node name="Marker3D52" type="Marker3D" parent="PuntosSpawn" unique_id=1301090206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.38673, -18.88002, 211.9029)
+
+[node name="Marker3D53" type="Marker3D" parent="PuntosSpawn" unique_id=89418871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.25467, -16.995552, 176.16202)
+
+[node name="Marker3D54" type="Marker3D" parent="PuntosSpawn" unique_id=1266332556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.23412, -16.995554, 141.75539)
+
+[node name="Marker3D55" type="Marker3D" parent="PuntosSpawn" unique_id=965654445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118.81439, -19.318558, 100.555244)
+
+[node name="Marker3D16" type="Marker3D" parent="PuntosSpawn" unique_id=547003576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.5706, -21.06025, 295.0835)
+
+[node name="Marker3D17" type="Marker3D" parent="PuntosSpawn" unique_id=2129255053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.0399, -20.725142, 207.51978)
+
+[node name="Marker3D25" type="Marker3D" parent="PuntosSpawn" unique_id=1370343485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.229996, -20.832514, 207.51978)
+
+[node name="Marker3D26" type="Marker3D" parent="PuntosSpawn" unique_id=353409539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.202515, -20.832514, 199.20274)
+
+[node name="Marker3D28" type="Marker3D" parent="PuntosSpawn" unique_id=2099681861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180.24173, -17.112602, 223.13893)
+
+[node name="Marker3D27" type="Marker3D" parent="PuntosSpawn" unique_id=111169589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -161.7136, -20.346249, 211.8289)
+
+[node name="Marker3D29" type="Marker3D" parent="PuntosSpawn" unique_id=26465672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -213.54108, -18.466145, 285.54282)
+
+[node name="Marker3D30" type="Marker3D" parent="PuntosSpawn" unique_id=2036319763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163.687, -14.138742, 287.6354)
+
+[node name="Marker3D31" type="Marker3D" parent="PuntosSpawn" unique_id=2108908471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163.687, -19.400126, 310.58896)
+
+[node name="Marker3D18" type="Marker3D" parent="PuntosSpawn" unique_id=934932438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.67853, -18.017193, 81.50337)
+
+[node name="Marker3D60" type="Marker3D" parent="PuntosSpawn" unique_id=1954081630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.54251, -18.017189, 110.08124)
+
+[node name="Marker3D19" type="Marker3D" parent="PuntosSpawn" unique_id=1296118248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.308426, -58.81951, 158.79971)
+
+[node name="Marker3D20" type="Marker3D" parent="PuntosSpawn" unique_id=1053147144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5376587, -15.666281, 214.31192)
+
+[node name="Marker3D21" type="Marker3D" parent="PuntosSpawn" unique_id=1721151407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.05846, -17.890202, 280.12125)
+
+[node name="Marker3D22" type="Marker3D" parent="PuntosSpawn" unique_id=1552327260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.70544, -17.890202, 319.91623)
+
+[node name="Marker3D32" type="Marker3D" parent="PuntosSpawn" unique_id=1541525578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.70544, -19.802734, 297.97238)
+
+[node name="Marker3D33" type="Marker3D" parent="PuntosSpawn" unique_id=1477790600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.79619, -19.802734, 297.97238)
+
+[node name="Marker3D34" type="Marker3D" parent="PuntosSpawn" unique_id=1883623137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.79619, -19.802734, 283.55652)
+
+[node name="Marker3D35" type="Marker3D" parent="PuntosSpawn" unique_id=1204914335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.50273, -19.802734, 266.82883)
+
+[node name="Marker3D36" type="Marker3D" parent="PuntosSpawn" unique_id=345750608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.50273, -19.802734, 314.77808)
+
+[node name="Marker3D37" type="Marker3D" parent="PuntosSpawn" unique_id=2068933690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.741505, -19.802734, 314.77808)
+
+[node name="Marker3D38" type="Marker3D" parent="PuntosSpawn" unique_id=1299464481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.741505, -19.802734, 290.3834)
+
+[node name="Marker3D39" type="Marker3D" parent="PuntosSpawn" unique_id=1610836149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.79339, -19.802734, 263.22003)
+
+[node name="Marker3D40" type="Marker3D" parent="PuntosSpawn" unique_id=771002791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4601555, -19.802734, 263.22003)
+
+[node name="Marker3D41" type="Marker3D" parent="PuntosSpawn" unique_id=1700586036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4601555, -19.802734, 298.6415)
+
+[node name="Marker3D42" type="Marker3D" parent="PuntosSpawn" unique_id=1624275611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4601555, -19.802734, 201.59286)
+
+[node name="Marker3D43" type="Marker3D" parent="PuntosSpawn" unique_id=1891754161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.855064, -19.802734, 201.59286)
+
+[node name="Marker3D44" type="Marker3D" parent="PuntosSpawn" unique_id=1513692711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.541847, -19.802734, 201.59286)
+
+[node name="Marker3D45" type="Marker3D" parent="PuntosSpawn" unique_id=108256635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.541847, -19.802734, 242.37373)
+
+[node name="Marker3D46" type="Marker3D" parent="PuntosSpawn" unique_id=103174863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.541847, -19.802734, 300.36694)
+
+[node name="Marker3D47" type="Marker3D" parent="PuntosSpawn" unique_id=1623480359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.04425, -19.802734, 300.36694)
+
+[node name="Marker3D48" type="Marker3D" parent="PuntosSpawn" unique_id=1810252815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.04425, -18.871166, 245.65012)
+
+[node name="Marker3D49" type="Marker3D" parent="PuntosSpawn" unique_id=1750998179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.6118, -18.871166, 213.39305)
+
+[node name="Marker3D50" type="Marker3D" parent="PuntosSpawn" unique_id=1684514623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190.45126, -20.910788, 271.54346)
+
+[node name="Marker3D51" type="Marker3D" parent="PuntosSpawn" unique_id=247571352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 220.02283, -18.493433, 278.76904)
+
+[node name="Marker3D23" type="Marker3D" parent="PuntosSpawn" unique_id=866739296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.99238, -17.890202, 217.46394)
+
+[node name="Marker3D24" type="Marker3D" parent="PuntosSpawn" unique_id=622170309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -219.70436, -17.890202, 307.02563)
+
+[node name="TimerSpawn" type="Timer" parent="." unique_id=59631867]
+wait_time = 6.0
+one_shot = true
+
+[node name="EscaleraRiel" type="Node3D" parent="." unique_id=1263644369 groups=["escaleras_path"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.4831, -17.422318, 160.28548)
+
+[node name="Riel" type="Path3D" parent="EscaleraRiel" unique_id=2046873168]
+curve = SubResource("Curve3D_cyqgy")
+debug_custom_color = Color(1, 1, 1, 1)
+
+[node name="Seguidor" type="PathFollow3D" parent="EscaleraRiel/Riel" unique_id=97844601]
+transform = Transform3D(0.99999833, -0.0014479626, -0.0004003815, 0, 0.26651245, -0.96383065, 0.0015022989, 0.96382964, 0.26651213, -0.6067352, -41.28838, 10.983261)
+cubic_interp = false
+loop = false
+tilt_enabled = false
+
+[node name="EntradaAbajo" type="Area3D" parent="EscaleraRiel" unique_id=1533720956]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EscaleraRiel/EntradaAbajo" unique_id=846691051]
+transform = Transform3D(0.86442405, 0, 0.50276345, 0, 1, 0, -0.50276345, 0, 0.86442405, -0.5405731, -40.382874, 11.045517)
+shape = SubResource("BoxShape3D_x2830")
+
+[node name="EntradaArriba" type="Area3D" parent="EscaleraRiel" unique_id=387429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27937317, 0.52101517, -0.3434906)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EscaleraRiel/EntradaArriba" unique_id=1077325692]
+transform = Transform3D(0.8595313, 0, 0.51108307, 0, 1, 0, -0.51108307, 0, 0.8595313, -0.2482605, -0.8840141, -0.3407898)
+shape = SubResource("BoxShape3D_ml3sb")
+
+[node name="SFX" type="Node" parent="." unique_id=1746463046]
+
+[node name="MusicaBosque" type="AudioStreamPlayer" parent="SFX" unique_id=124046614]
+stream = ExtResource("8_wo4pc")
+volume_db = -11.474
+autoplay = true
+
+[node name="AmbienteBosque" type="AudioStreamPlayer" parent="SFX" unique_id=237112823]
+stream = ExtResource("9_7qi5w")
+autoplay = true
+
+[node name="MusicaVictoria" type="AudioStreamPlayer" parent="SFX" unique_id=1633641357]
+stream = ExtResource("10_sgwwy")
+
+[node name="MusicaDerrota" type="AudioStreamPlayer" parent="SFX" unique_id=1853605763]
+stream = ExtResource("11_b7dtp")
 
 [editable path="Escenario_Objetos"]

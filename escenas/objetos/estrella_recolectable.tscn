@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://c764pgwopqv2o"]
+
+[ext_resource type="PackedScene" uid="uid://ce4aqrxyskqxg" path="res://modelos/objetos/Estrella_Base.glb" id="1_6wpf8"]
+[ext_resource type="Script" uid="uid://d4j004sc8yvu3" path="res://escenas/objetos/estrella_recolectable.gd" id="1_410ig"]
+[ext_resource type="AudioStream" uid="uid://mluelq57rfjb" path="res://audio/SFX/Agarrar_Estrella.ogg" id="3_a6qfe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_410ig"]
+albedo_color = Color(1, 0.8352941, 0.23137255, 1)
+roughness = 0.25
+emission_enabled = true
+emission = Color(0.9264288, 0.72923607, 0.15527451, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a6qfe"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wpf8"]
+shading_mode = 0
+albedo_color = Color(0.9999997, 0.97301143, 0.7224774, 1)
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_410ig"]
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="Curve" id="Curve_410ig"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="EstrellaRecolectable" type="Area3D" unique_id=202060314 groups=["estrellas"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_410ig")
+
+[node name="Estrella_Base" parent="." unique_id=1401260193 instance=ExtResource("1_6wpf8")]
+
+[node name="S1_001" parent="Estrella_Base" index="0" unique_id=727431050]
+material_override = SubResource("StandardMaterial3D_410ig")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=327956953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.087120116, 0.050902605)
+shape = SubResource("SphereShape3D_a6qfe")
+debug_color = Color(0.21868825, 0.4378173, 0.2009657, 0.41960785)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1024409370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.07333875)
+material_override = SubResource("StandardMaterial3D_6wpf8")
+amount = 16
+lifetime = 1.2
+mesh = SubResource("QuadMesh_410ig")
+emission_shape = 1
+emission_sphere_radius = 1.2
+spread = 180.0
+gravity = Vector3(0, 0.3, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.5
+scale_amount_curve = SubResource("Curve_410ig")
+
+[node name="SonidoRecolectar" type="AudioStreamPlayer" parent="." unique_id=204478435]
+stream = ExtResource("3_a6qfe")
+
+[editable path="Estrella_Base"]

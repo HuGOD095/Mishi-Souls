@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bbdswdk6ga1wk"]
+
+[ext_resource type="Script" uid="uid://dvwuw6v4sheyc" path="res://escenas/enemies/enemigo_espectro.gd" id="1_48dcv"]
+[ext_resource type="PackedScene" uid="uid://dgmx0u27errkh" path="res://modelos/enemies/Enemigo_Espectro.glb" id="1_n008q"]
+[ext_resource type="AudioStream" uid="uid://bub0j3p3dyuw0" path="res://audio/SFX/Fantasma_Aparicion.ogg" id="3_vvy8p"]
+[ext_resource type="AudioStream" uid="uid://deidbqulo1xn6" path="res://audio/SFX/Espectro_Ataque_Desaparicion.ogg" id="4_srf05"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48dcv"]
+albedo_color = Color(0.035440948, 0.021262832, 0.06540532, 1)
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.07185348, 0.003022139, 0.13858566, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hiixa"]
+offset = Vector3(190.48, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vvy8p"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_hiixa")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srf05"]
+transparency = 1
+albedo_color = Color(0.8392157, 0.8627451, 0.9098039, 0.84313726)
+albedo_texture = SubResource("NoiseTexture2D_vvy8p")
+metallic_specular = 0.49
+emission_enabled = true
+emission = Color(0.056827128, 0.018428687, 0.13941514, 1)
+emission_energy_multiplier = 1.27
+texture_filter = 0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_48dcv"]
+radius = 0.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hiixa"]
+radius = 0.83
+
+[node name="EnemigoEspectro" type="CharacterBody3D" unique_id=2018820948]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_48dcv")
+
+[node name="MallaEspectro" parent="." unique_id=241064881 instance=ExtResource("1_n008q")]
+
+[node name="Cube" parent="MallaEspectro" index="0" unique_id=2070223230]
+surface_material_override/0 = SubResource("StandardMaterial3D_48dcv")
+surface_material_override/1 = SubResource("StandardMaterial3D_srf05")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2083160340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.079786986, 0)
+shape = SubResource("SphereShape3D_48dcv")
+debug_color = Color(0.99361426, 0, 0.24182716, 0.41960785)
+
+[node name="AreaAtaque" type="Area3D" parent="." unique_id=702965288]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaAtaque" unique_id=1556945946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08335802, 0)
+shape = SubResource("SphereShape3D_hiixa")
+debug_color = Color(0.44313726, 0.4627451, 0.98039216, 0.88235295)
+
+[node name="SonidoAparicion" type="AudioStreamPlayer3D" parent="." unique_id=435937223]
+stream = ExtResource("3_vvy8p")
+unit_size = 5.0
+autoplay = true
+max_distance = 28.0
+
+[node name="SonidoAtaqueMuerte" type="AudioStreamPlayer3D" parent="." unique_id=206082748]
+stream = ExtResource("4_srf05")
+unit_size = 5.0
+max_distance = 28.0
+
+[editable path="MallaEspectro"]

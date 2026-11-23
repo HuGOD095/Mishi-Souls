@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://40l7dc6oj7ld" path="res://modelos/personaje_prueba.gd" id="1_a4kos"]
 [ext_resource type="PackedScene" uid="uid://cbwfjks3riukw" path="res://modelos/player/mishiControlable.tscn" id="2_ejmyt"]
+[ext_resource type="AudioStream" uid="uid://cwidn6aifhatk" path="res://audio/SFX/Caminata.ogg" id="3_8ayg6"]
+[ext_resource type="AudioStream" uid="uid://dmmtecgjopy63" path="res://audio/SFX/Escaleras.ogg" id="4_4pxnu"]
+[ext_resource type="AudioStream" uid="uid://uxbc6c8jx2rn" path="res://audio/SFX/Jump.ogg" id="5_3m5pg"]
+[ext_resource type="AudioStream" uid="uid://3c2hboygfgyo" path="res://audio/SFX/Espadazo.ogg" id="6_grva6"]
+[ext_resource type="AudioStream" uid="uid://brq1t0dc6ba6j" path="res://audio/SFX/gato_sonido.ogg" id="7_yk4xi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a4kos"]
 radius = 0.3
@@ -11,7 +16,10 @@ height = 1.5
 margin = 0.1
 radius = 0.2
 
-[node name="PersonajePrueba" type="CharacterBody3D" unique_id=1807025397]
+[sub_resource type="SphereShape3D" id="SphereShape3D_q7xr2"]
+radius = 0.6
+
+[node name="PersonajePrueba" type="CharacterBody3D" unique_id=1807025397 groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_a4kos")
 
@@ -23,11 +31,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.036722183, 0.0016956627, -
 shape = SubResource("CapsuleShape3D_a4kos")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1344205005]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4165442, 1.7272928)
-light_color = Color(0.9899222, 0.9099663, 0.586985, 1)
-light_energy = 1.655
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0826204, 0.9193684)
+light_color = Color(0.7855204, 0.73656625, 0.19245726, 1)
 light_volumetric_fog_energy = 3.274
-omni_range = 7.26
+omni_range = 3.532
 
 [node name="PivoteCamara" type="SpringArm3D" parent="." unique_id=141746958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
@@ -37,3 +44,31 @@ spring_length = 3.0
 [node name="Camera3D" type="Camera3D" parent="PivoteCamara" unique_id=968383530]
 transform = Transform3D(1, 0, 0, 0, 0.944829, 0.3275642, 0, -0.32756424, 0.9448289, 0, 0, 0)
 far = 55.0
+
+[node name="GolpeEspada" type="Area3D" parent="." unique_id=873899650]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GolpeEspada" unique_id=1093643184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26088488, -0.9828415)
+shape = SubResource("SphereShape3D_q7xr2")
+debug_color = Color(0.92156863, 0.5411765, 0, 0.73333335)
+
+[node name="SFX" type="Node" parent="." unique_id=1780395554]
+
+[node name="SonidoCaminata" type="AudioStreamPlayer" parent="SFX" unique_id=1164405699]
+stream = ExtResource("3_8ayg6")
+
+[node name="SonidoEscaleras" type="AudioStreamPlayer" parent="SFX" unique_id=694767488]
+stream = ExtResource("4_4pxnu")
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="SFX" unique_id=1336781649]
+stream = ExtResource("5_3m5pg")
+
+[node name="SonidoEspadazo" type="AudioStreamPlayer" parent="SFX" unique_id=1771764662]
+stream = ExtResource("6_grva6")
+
+[node name="SonidoDano" type="AudioStreamPlayer" parent="SFX" unique_id=1090046612]
+stream = ExtResource("7_yk4xi")
