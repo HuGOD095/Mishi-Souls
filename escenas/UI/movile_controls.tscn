@@ -52,38 +52,38 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Ataque" parent="Buttons" unique_id=1277958986 instance=ExtResource("1_ygkig")]
-position = Vector2(1515, 814)
-scale = Vector2(7, 7)
+position = Vector2(1373, 785.00006)
+scale = Vector2(12, 12)
 texture_normal = SubResource("AtlasTexture_gknga")
 action = "atacar"
 
 [node name="Emote" parent="Buttons" unique_id=2081959922 instance=ExtResource("1_ygkig")]
-position = Vector2(1285, 843)
-scale = Vector2(5, 5)
+position = Vector2(1087, 816)
+scale = Vector2(12, 12)
 texture_normal = SubResource("AtlasTexture_7xydc")
 action = "emote"
 
 [node name="Salto" parent="Buttons" unique_id=1386512858 instance=ExtResource("1_ygkig")]
-position = Vector2(1398.0001, 678.00006)
-scale = Vector2(7, 7)
+position = Vector2(1179, 593)
+scale = Vector2(12, 12)
 texture_normal = SubResource("AtlasTexture_qt3u4")
 action = "jump"
 
 [node name="Sprint" parent="Buttons" unique_id=518747389 instance=ExtResource("1_ygkig")]
-position = Vector2(1634, 681.00006)
-scale = Vector2(7, 7)
+position = Vector2(1568.0001, 609)
+scale = Vector2(12, 12)
 texture_normal = SubResource("AtlasTexture_hj5um")
 action = "sprint"
 
 [node name="Equipar" parent="Buttons" unique_id=518056513 instance=ExtResource("1_ygkig")]
-position = Vector2(1526, 566)
-scale = Vector2(6, 6)
+position = Vector2(1372, 424)
+scale = Vector2(12, 12)
 texture_normal = SubResource("AtlasTexture_cu4ry")
 action = "equip"
 
 [node name="Pausa" parent="Buttons" unique_id=1638347260 instance=ExtResource("1_ygkig")]
-position = Vector2(1790, 17.000004)
-scale = Vector2(7, 7)
+position = Vector2(1671, 33)
+scale = Vector2(12, 12)
 texture_normal = SubResource("AtlasTexture_pg2e6")
 texture_pressed = SubResource("AtlasTexture_lxcjh")
 action = "pausa"
@@ -91,11 +91,11 @@ action = "pausa"
 [node name="Joystick" type="Control" parent="." unique_id=2021261245]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 175.00002
-offset_top = 654.00006
-offset_right = 215.00002
-offset_bottom = 694.00006
-scale = Vector2(7, 7)
+offset_left = 113.0
+offset_top = 508.0
+offset_right = 153.0
+offset_bottom = 548.0
+scale = Vector2(10, 10)
 script = ExtResource("4_hj5um")
 
 [node name="Base" type="TextureRect" parent="Joystick" unique_id=4659844]

@@ -134,8 +134,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if riel_escalera != null:
 		return
 
-	# Atacar (botón táctil "atacar" o clic izquierdo)
+# Atacar (botón táctil "atacar" o clic izquierdo en PC)
 	if event.is_action_pressed("atacar"):
+		# En móvil, ignorar si el evento viene emulado como clic de ratón
+		if OS.has_feature("mobile") and event is InputEventMouseButton:
+			return
+			
 		var permiso_pc := OS.has_feature("mobile") or Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 		if permiso_pc and is_on_floor() and not atacando:
 			haciendo_emote = false
