@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://hfmblr6oeah3"]
+
+[ext_resource type="Script" uid="uid://b1po3qwi6ywkn" path="res://escenas/UI/movile_controls.gd" id="1_cu4ry"]
+[ext_resource type="Texture2D" uid="uid://d2efewlwmsp5s" path="res://sprites/controls_movile/Controles_Mishi_Souls.png" id="1_gknga"]
+[ext_resource type="PackedScene" uid="uid://pimivk21tpr3" path="res://escenas/UI/boton_generico.tscn" id="1_ygkig"]
+[ext_resource type="Texture2D" uid="uid://bkvlehlefs2eg" path="res://sprites/controls_movile/pause.png" id="3_7xydc"]
+[ext_resource type="Script" uid="uid://i46fyymp6xlp" path="res://escenas/UI/joystick.gd" id="4_hj5um"]
+[ext_resource type="Texture2D" uid="uid://cnvnoqk2s157k" path="res://sprites/controls_movile/Joystick.png" id="5_cu4ry"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gknga"]
+atlas = ExtResource("1_gknga")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xydc"]
+atlas = ExtResource("1_gknga")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt3u4"]
+atlas = ExtResource("1_gknga")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj5um"]
+atlas = ExtResource("1_gknga")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu4ry"]
+atlas = ExtResource("1_gknga")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg2e6"]
+atlas = ExtResource("3_7xydc")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxcjh"]
+atlas = ExtResource("3_7xydc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5f0v"]
+atlas = ExtResource("5_cu4ry")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ny7x"]
+atlas = ExtResource("5_cu4ry")
+region = Rect2(0, 0, 32, 32)
+
+[node name="MovileControls" type="CanvasLayer" unique_id=799760895]
+process_mode = 3
+script = ExtResource("1_cu4ry")
+
+[node name="Buttons" type="Control" parent="." unique_id=1420354039]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Ataque" parent="Buttons" unique_id=1277958986 instance=ExtResource("1_ygkig")]
+position = Vector2(1515, 814)
+scale = Vector2(7, 7)
+texture_normal = SubResource("AtlasTexture_gknga")
+action = "atacar"
+
+[node name="Emote" parent="Buttons" unique_id=2081959922 instance=ExtResource("1_ygkig")]
+position = Vector2(1285, 843)
+scale = Vector2(5, 5)
+texture_normal = SubResource("AtlasTexture_7xydc")
+action = "emote"
+
+[node name="Salto" parent="Buttons" unique_id=1386512858 instance=ExtResource("1_ygkig")]
+position = Vector2(1398.0001, 678.00006)
+scale = Vector2(7, 7)
+texture_normal = SubResource("AtlasTexture_qt3u4")
+action = "jump"
+
+[node name="Sprint" parent="Buttons" unique_id=518747389 instance=ExtResource("1_ygkig")]
+position = Vector2(1634, 681.00006)
+scale = Vector2(7, 7)
+texture_normal = SubResource("AtlasTexture_hj5um")
+action = "sprint"
+
+[node name="Equipar" parent="Buttons" unique_id=518056513 instance=ExtResource("1_ygkig")]
+position = Vector2(1526, 566)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AtlasTexture_cu4ry")
+action = "equip"
+
+[node name="Pausa" parent="Buttons" unique_id=1638347260 instance=ExtResource("1_ygkig")]
+position = Vector2(1790, 17.000004)
+scale = Vector2(7, 7)
+texture_normal = SubResource("AtlasTexture_pg2e6")
+texture_pressed = SubResource("AtlasTexture_lxcjh")
+action = "pausa"
+
+[node name="Joystick" type="Control" parent="." unique_id=2021261245]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 175.00002
+offset_top = 654.00006
+offset_right = 215.00002
+offset_bottom = 694.00006
+scale = Vector2(7, 7)
+script = ExtResource("4_hj5um")
+
+[node name="Base" type="TextureRect" parent="Joystick" unique_id=4659844]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_s5f0v")
+
+[node name="Palanca" type="TextureRect" parent="Joystick" unique_id=32967056]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_3ny7x")

@@ -163,3 +163,4 @@ func _on_jugador_murio() -> void:
 	tween.tween_property(fade_negro, "color:a", 1.0, 1.2)
 	tween.tween_interval(0.3)
 	tween.tween_callback(get_tree().reload_current_scene)
+	

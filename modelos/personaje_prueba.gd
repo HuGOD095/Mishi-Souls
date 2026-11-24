@@ -66,7 +66,8 @@ func _ready() -> void:
 	
 	hitbox_espada.monitoring = false
 	hitbox_espada.body_entered.connect(_on_hitbox_espada_body_entered)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if not OS.has_feature("mobile"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	anim_player.animation_finished.connect(_al_terminar_animacion)
 	anim_player.play("IdleNormal")
 	modelo_mishi.ocultar_todas()
@@ -101,6 +102,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if esta_muerto or juego_ganado:
 		return
 		
+	# 1. Cámara con ratón (PC)
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * sensibilidad_mouse)
 		pivote_camara.rotate_x(-event.relative.y * sensibilidad_mouse)
@@ -109,21 +111,33 @@ func _unhandled_input(event: InputEvent) -> void:
 			deg_to_rad(limite_abajo_grados),
 			deg_to_rad(limite_arriba_grados)
 		)
+	# 2. Cámara táctil (Android - arrastrar en cualquier zona libre de la pantalla)
+	elif event is InputEventScreenDrag:
+		var sensibilidad_tactil := sensibilidad_mouse * 1.8
+		rotate_y(-event.relative.x * sensibilidad_tactil)
+		pivote_camara.rotate_x(-event.relative.y * sensibilidad_tactil)
+		pivote_camara.rotation.x = clamp(
+			pivote_camara.rotation.x,
+			deg_to_rad(limite_abajo_grados),
+			deg_to_rad(limite_arriba_grados)
+		)
 
-	# Liberar o capturar ratón
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		return
-	elif event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		return
+	# Liberar o capturar ratón en PC
+	if not OS.has_feature("mobile"):
+		if event.is_action_pressed("ui_cancel"):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			return
+		elif event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			return
 
 	if riel_escalera != null:
 		return
 
-	# Atacar con clic izquierdo (con o sin espada)
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and is_on_floor() and not atacando:
+	# Atacar (botón táctil "atacar" o clic izquierdo)
+	if event.is_action_pressed("atacar"):
+		var permiso_pc := OS.has_feature("mobile") or Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
+		if permiso_pc and is_on_floor() and not atacando:
 			haciendo_emote = false
 			atacando = true
 			enemigos_golpeados.clear()
@@ -131,20 +145,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			anim_player.play("SwordAttack", 0.1, velocidad_ataque)
 			_activar_hitbox_sincronizada()
 
-	if event is InputEventKey and event.pressed and not event.echo:
-		# Tecla E: alternar espada entre la espalda y la mano
-		if event.keycode == KEY_E and tiene_espada and not atacando:
-			espada_equipada = not espada_equipada
-			if espada_equipada:
-				modelo_mishi.mostrar_en_mano()
-			else:
-				modelo_mishi.mostrar_en_espalda()
+	# Equipar / guardar espada (botón táctil "equip" o tecla E)
+	if event.is_action_pressed("equip") and tiene_espada and not atacando:
+		espada_equipada = not espada_equipada
+		if espada_equipada:
+			modelo_mishi.mostrar_en_mano()
+		else:
+			modelo_mishi.mostrar_en_espalda()
 
-		# Tecla 1: emote cancelable
-		elif event.keycode == KEY_1 and is_on_floor() and not atacando:
-			haciendo_emote = true
-			sonido_caminata.stop()
-			anim_player.play("SambaDanceEmote", 0.15)
+	# Emote de baile (botón táctil "emote" o tecla 1)
+	elif event.is_action_pressed("emote") and is_on_floor() and not atacando:
+		haciendo_emote = true
+		sonido_caminata.stop()
+		anim_player.play("SambaDanceEmote", 0.15)
 
 func _physics_process(delta: float) -> void:
 	if esta_muerto or juego_ganado:
@@ -199,7 +212,7 @@ func _physics_process(delta: float) -> void:
 
 	var direccion := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	var quiere_correr := Input.is_key_pressed(KEY_SHIFT) and direccion != Vector3.ZERO
+	var quiere_correr := Input.is_action_pressed("sprint") and direccion != Vector3.ZERO
 	var puede_correr := estamina_actual > 0.0 and not agotado
 	var esta_corriendo := quiere_correr and puede_correr and not atacando
 	

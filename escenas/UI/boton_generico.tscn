@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://pimivk21tpr3"]
+
+[ext_resource type="Script" uid="uid://bd3kv8b42wb56" path="res://boton_generico.gd" id="1_n0ak6"]
+
+[node name="BotonGenerico" type="TouchScreenButton" unique_id=1277958986]
+script = ExtResource("1_n0ak6")
