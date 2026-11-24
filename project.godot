@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="MichiSouls"
+config/version="0.1.1"
 run/main_scene="uid://73oc8ok4ppfi"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
